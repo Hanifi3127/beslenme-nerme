@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PatiBesin — Yapay Zeka Destekli Sokak Hayvanları Besleme Sistemi</title>
+  <meta name="description" content="Sokak hayvanlarınız için yapay zeka destekli kişiselleştirilmiş beslenme önerileri. Hayvanı seç, yaşını belirt, anında öneri al." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Arka plan parçacıkları -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+
+
+  <!-- Ana Uygulama -->
+  <div class="app-container">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">🐾</span>
+        <span class="logo-text">PatiBesin</span>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">✨ Yapay Zeka Destekli</div>
+      <h1 class="hero-title">Sokak Hayvanları İçin<br /><span class="gradient-text">Akıllı Beslenme Önerisi</span></h1>
+      <p class="hero-desc">Hayvanı seç, yaş aralığını belirt — yapay zeka o hayvana özel besin planını saniyeler içinde hazırlasın.</p>
+    </section>
+
+    <!-- Adım Göstergesi -->
+    <div class="stepper">
+      <div class="step active" id="step-indicator-1">
+        <div class="step-circle">1</div>
+        <span>Hayvan</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step-indicator-2">
+        <div class="step-circle">2</div>
+        <span>Yaş</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" id="step-indicator-3">
+        <div class="step-circle">3</div>
+        <span>Öneri</span>
+      </div>
+    </div>
+
+    <!-- ADIM 1: Hayvan Seçimi -->
+    <section class="step-section active" id="step1">
+      <h2 class="step-title">Hangi hayvanı beslemek istiyorsunuz?</h2>
+      <div class="animal-grid" id="animalGrid">
+        <div class="animal-card" data-animal="kedi" id="animal-kedi">
+          <div class="animal-emoji">🐱</div>
+          <div class="animal-name">Kedi</div>
+          <div class="animal-sub">Felidae</div>
+        </div>
+        <div class="animal-card" data-animal="köpek" id="animal-kopek">
+          <div class="animal-emoji">🐶</div>
+          <div class="animal-name">Köpek</div>
+          <div class="animal-sub">Canidae</div>
+        </div>
+        <div class="animal-card" data-animal="güvercin" id="animal-guvercin">
+          <div class="animal-emoji">🕊️</div>
+          <div class="animal-name">Güvercin</div>
+          <div class="animal-sub">Columbidae</div>
+        </div>
+        <div class="animal-card" data-animal="ördek" id="animal-ordek">
+          <div class="animal-emoji">🦆</div>
+          <div class="animal-name">Ördek</div>
+          <div class="animal-sub">Anatidae</div>
+        </div>
+        <div class="animal-card" data-animal="serçe" id="animal-serce">
+          <div class="animal-emoji">🐦</div>
+          <div class="animal-name">Serçe</div>
+          <div class="animal-sub">Passeridae</div>
+        </div>
+        <div class="animal-card" data-animal="karga" id="animal-karga">
+          <div class="animal-emoji">🐦‍⬛</div>
+          <div class="animal-name">Karga</div>
+          <div class="animal-sub">Corvidae</div>
+        </div>
+        <div class="animal-card" data-animal="baykuş" id="animal-baykus">
+          <div class="animal-emoji">🦉</div>
+          <div class="animal-name">Baykuş</div>
+          <div class="animal-sub">Strigidae</div>
+        </div>
+        <div class="animal-card" data-animal="martı" id="animal-marti">
+          <div class="animal-emoji">🦅</div>
+          <div class="animal-name">Martı</div>
+          <div class="animal-sub">Laridae</div>
+        </div>
+        <div class="animal-card" data-animal="tavşan" id="animal-tavsan">
+          <div class="animal-emoji">🐇</div>
+          <div class="animal-name">Tavşan</div>
+          <div class="animal-sub">Leporidae</div>
+        </div>
+        <div class="animal-card" data-animal="sincap" id="animal-sincap">
+          <div class="animal-emoji">🐿️</div>
+          <div class="animal-name">Sincap</div>
+          <div class="animal-sub">Sciuridae</div>
+        </div>
+        <div class="animal-card" data-animal="kirpi" id="animal-kirpi">
+          <div class="animal-emoji">🦔</div>
+          <div class="animal-name">Kirpi</div>
+          <div class="animal-sub">Erinaceidae</div>
+        </div>
+        <div class="animal-card" data-animal="hamster" id="animal-hamster">
+          <div class="animal-emoji">🐹</div>
+          <div class="animal-name">Hamster</div>
+          <div class="animal-sub">Cricetidae</div>
+        </div>
+        <div class="animal-card" data-animal="fare" id="animal-fare">
+          <div class="animal-emoji">🐭</div>
+          <div class="animal-name">Fare</div>
+          <div class="animal-sub">Muridae</div>
+        </div>
+        <div class="animal-card" data-animal="tilki" id="animal-tilki">
+          <div class="animal-emoji">🦊</div>
+          <div class="animal-name">Tilki</div>
+          <div class="animal-sub">Vulpes</div>
+        </div>
+        <div class="animal-card" data-animal="kurt" id="animal-kurt">
+          <div class="animal-emoji">🐺</div>
+          <div class="animal-name">Kurt</div>
+          <div class="animal-sub">Canidae</div>
+        </div>
+        <div class="animal-card" data-animal="geyik" id="animal-geyik">
+          <div class="animal-emoji">🦌</div>
+          <div class="animal-name">Geyik</div>
+          <div class="animal-sub">Cervidae</div>
+        </div>
+        <div class="animal-card" data-animal="at" id="animal-at">
+          <div class="animal-emoji">🐴</div>
+          <div class="animal-name">At</div>
+          <div class="animal-sub">Equidae</div>
+        </div>
+        <div class="animal-card" data-animal="eşek" id="animal-esek">
+          <div class="animal-emoji">🫏</div>
+          <div class="animal-name">Eşek</div>
+          <div class="animal-sub">Equus asinus</div>
+        </div>
+        <div class="animal-card" data-animal="keçi" id="animal-keci">
+          <div class="animal-emoji">🐐</div>
+          <div class="animal-name">Keçi</div>
+          <div class="animal-sub">Capra hircus</div>
+        </div>
+        <div class="animal-card" data-animal="koyun" id="animal-koyun">
+          <div class="animal-emoji">🐑</div>
+          <div class="animal-name">Koyun</div>
+          <div class="animal-sub">Ovis aries</div>
+        </div>
+        <div class="animal-card" data-animal="inek" id="animal-inek">
+          <div class="animal-emoji">🐄</div>
+          <div class="animal-name">İnek</div>
+          <div class="animal-sub">Bos taurus</div>
+        </div>
+        <div class="animal-card" data-animal="tavuk" id="animal-tavuk">
+          <div class="animal-emoji">🐔</div>
+          <div class="animal-name">Tavuk</div>
+          <div class="animal-sub">Gallus gallus</div>
+        </div>
+        <div class="animal-card" data-animal="kaz" id="animal-kaz">
+          <div class="animal-emoji">🪿</div>
+          <div class="animal-name">Kaz</div>
+          <div class="animal-sub">Anserinae</div>
+        </div>
+        <div class="animal-card" data-animal="kaplumbağa" id="animal-kaplumbaga">
+          <div class="animal-emoji">🐢</div>
+          <div class="animal-name">Kaplumbağa</div>
+          <div class="animal-sub">Testudines</div>
+        </div>
+        <div class="animal-card" data-animal="kertenkele" id="animal-kertenkele">
+          <div class="animal-emoji">🦎</div>
+          <div class="animal-name">Kertenkele</div>
+          <div class="animal-sub">Lacertidae</div>
+        </div>
+        <div class="animal-card" data-animal="balık" id="animal-balik">
+          <div class="animal-emoji">🐟</div>
+          <div class="animal-name">Balık</div>
+          <div class="animal-sub">Pisces</div>
+        </div>
+        <div class="animal-card" data-animal="papağan" id="animal-papagan">
+          <div class="animal-emoji">🦜</div>
+          <div class="animal-name">Papağan</div>
+          <div class="animal-sub">Psittacidae</div>
+        </div>
+        <div class="animal-card" data-animal="flamingo" id="animal-flamingo">
+          <div class="animal-emoji">🦩</div>
+          <div class="animal-name">Flamingo</div>
+          <div class="animal-sub">Phoenicopteridae</div>
+        </div>
+      </div>
+      <div class="custom-animal-row">
+        <input type="text" id="customAnimal" placeholder="Başka bir hayvan yazın..." />
+        <button id="useCustomAnimal" class="btn-secondary">Seç</button>
+      </div>
+      <button class="btn-primary btn-next" id="toStep2" disabled>Devam Et →</button>
+    </section>
+
+    <!-- ADIM 2: Yaş Seçimi -->
+    <section class="step-section" id="step2">
+      <h2 class="step-title">
+        <span id="selectedAnimalEmoji">🐾</span> 
+        <span id="selectedAnimalName">Hayvan</span>'ın tahmini yaş aralığı?
+      </h2>
+      <div class="age-grid" id="ageGrid">
+        <div class="age-card" data-age="yavru" data-range="0-6 ay" id="age-yavru">
+          <div class="age-icon">🍼</div>
+          <div class="age-label">Yavru</div>
+          <div class="age-range">0 – 6 ay</div>
+          <div class="age-desc">Anne sütü veya özel mama ihtiyacı var</div>
+        </div>
+        <div class="age-card" data-age="genç" data-range="6 ay - 2 yıl" id="age-genc">
+          <div class="age-icon">⚡</div>
+          <div class="age-label">Genç</div>
+          <div class="age-range">6 ay – 2 yıl</div>
+          <div class="age-desc">Büyüme döneminde yüksek enerji gerektirir</div>
+        </div>
+        <div class="age-card" data-age="yetişkin" data-range="2-7 yıl" id="age-yetiskin">
+          <div class="age-icon">💪</div>
+          <div class="age-label">Yetişkin</div>
+          <div class="age-range">2 – 7 yıl</div>
+          <div class="age-desc">Dengeli ve düzenli beslenme dönemi</div>
+        </div>
+        <div class="age-card" data-age="yaşlı" data-range="7+ yıl" id="age-yasli">
+          <div class="age-icon">🌿</div>
+          <div class="age-label">Yaşlı</div>
+          <div class="age-range">7+ yıl</div>
+          <div class="age-desc">Sindirimi kolay, düşük kalorili besinler</div>
+        </div>
+      </div>
+
+      <!-- Ekstra filtreler -->
+      <div class="extras-section">
+        <h3 class="extras-title">Ek Bilgiler <span class="optional-badge">İsteğe Bağlı</span></h3>
+        <div class="extras-grid">
+          <label class="extra-option" id="extra-hasta">
+            <input type="checkbox" value="hasta/hasta görünümlü" id="chk-hasta" />
+            <span class="extra-icon">🤒</span>
+            <span>Hasta/Zayıf</span>
+          </label>
+          <label class="extra-option" id="extra-hamile">
+            <input type="checkbox" value="hamile veya emziren" id="chk-hamile" />
+            <span class="extra-icon">🤰</span>
+            <span>Hamile/Emziren</span>
+          </label>
+          <label class="extra-option" id="extra-kis">
+            <input type="checkbox" value="kış mevsiminde soğukta yaşayan" id="chk-kis" />
+            <span class="extra-icon">❄️</span>
+            <span>Kış Mevsimi</span>
+          </label>
+          <label class="extra-option" id="extra-aktif">
+            <input type="checkbox" value="çok aktif ve hareketli" id="chk-aktif" />
+            <span class="extra-icon">🏃</span>
+            <span>Çok Aktif</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="step-buttons">
+        <button class="btn-secondary btn-back" id="backToStep1">← Geri</button>
+        <button class="btn-primary btn-next" id="toStep3" disabled>Öneri Al 🤖</button>
+      </div>
+    </section>
+
+    <!-- ADIM 3: Yapay Zeka Önerisi -->
+    <section class="step-section" id="step3">
+      <!-- Yükleniyor -->
+      <div class="loading-state" id="loadingState">
+        <div class="ai-loader">
+          <div class="loader-ring"></div>
+          <div class="loader-icon">🤖</div>
+        </div>
+        <p class="loading-text">Yapay zeka analiz ediyor<span class="dots">...</span></p>
+        <p class="loading-sub">
+          <span id="loadingAnimal">🐾</span> 
+          <strong id="loadingDesc"></strong> için besin planı hazırlanıyor
+        </p>
+      </div>
+
+      <!-- Sonuç -->
+      <div class="result-state hidden" id="resultState">
+        <div class="result-header">
+          <div class="result-animal-badge">
+            <span id="resultEmoji">🐾</span>
+          </div>
+          <div class="result-meta">
+            <div class="result-tag" id="resultTag">Kedi • Yavru</div>
+            <h2 class="result-title">Besin Önerisi Hazır!</h2>
+          </div>
+        </div>
+        <div class="result-card" id="resultContent">
+          <!-- AI içeriği buraya gelecek -->
+        </div>
+        <div class="result-actions">
+          <button class="btn-secondary" id="restartBtn">🔄 Yeni Öneri Al</button>
+          <button class="btn-primary" id="printBtn">🖨️ Yazdır</button>
+        </div>
+      </div>
+
+      <!-- Hata -->
+      <div class="error-state hidden" id="errorState">
+        <div class="error-icon">⚠️</div>
+        <h3>Bir hata oluştu</h3>
+        <p id="errorMessage">API anahtarınızı kontrol edin ve tekrar deneyin.</p>
+        <button class="btn-primary" id="retryBtn">Tekrar Dene</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>🐾 PatiBesin — Sokak Hayvanları İçin Yapay Zeka Destekli Beslenme Sistemi</p>
+    <p class="footer-sub">Bitirme Projesi • Google Gemini AI</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
