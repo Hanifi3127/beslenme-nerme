@@ -4,9 +4,7 @@
    ============================================================ */
 
 // ─── CONFIG ──────────────────────────────────────────────────
-// Groq API — Tamamen ücretsiz, kart gerekmez: console.groq.com
-const GROQ_API_KEY = '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';
-const GROQ_MODEL   = 'llama-3.3-70b-versatile';
+// API key artık kodda yok — Vercel Environment Variables'da güvenle saklanıyor
 
 const state = {
   selectedAnimal: null,
@@ -166,7 +164,7 @@ function collectExtras() {
     .forEach(cb => state.extras.push(cb.value));
 }
 
-// ─── YAPAY ZEKA ÖNERİSİ — GROQ ───────────────────────────────
+// ─── YAPAY ZEKA ÖNERİSİ — GÜVENLİ PROXY ─────────────────────
 async function fetchAIRecommendation() {
   loadingState.classList.remove('hidden');
   resultState.classList.add('hidden');
@@ -175,35 +173,21 @@ async function fetchAIRecommendation() {
   loadingDescEl.textContent   = `${capitalize(state.selectedAnimal)} • ${capitalize(state.selectedAge)} (${state.selectedAgeRange})`;
 
   try {
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    // API key artık burada yok — /api/recommend proxy'si üzerinden gidiyor
+    const response = await fetch('/api/recommend', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${GROQ_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        messages: [
-          {
-            role: 'system',
-            content: 'Sen deneyimli bir veteriner beslenme uzmanısın. Sokak hayvanlarının sağlıklı beslenmesi konusunda kapsamlı ve uygulanabilir öneriler veriyorsun. Yanıtların Türkçe, anlaşılır ve pratik olmalı.'
-          },
-          { role: 'user', content: buildPrompt() }
-        ],
-        temperature: 0.7,
-        max_tokens: 1500
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: buildPrompt() })
     });
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({}));
-      throw new Error(err?.error?.message || `Hata kodu: ${response.status}`);
+      throw new Error(err?.error || `Hata kodu: ${response.status}`);
     }
 
     const data = await response.json();
-    const text = data?.choices?.[0]?.message?.content;
-    if (!text) throw new Error('Yapay zekadan yanıt alınamadı.');
-    showResult(text);
+    if (!data.result) throw new Error('Yapay zekadan yanıt alınamadı.');
+    showResult(data.result);
   } catch (err) {
     showError(err.message);
   }
